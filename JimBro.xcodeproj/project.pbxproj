@@ -15,9 +15,10 @@
 		C3D3A3BB28F875FC00792F78 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3D3A3B928F875FC00792F78 /* LaunchScreen.storyboard */; };
 		C3D3A3C328F8765C00792F78 /* BodyPartTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D3A3C228F8765C00792F78 /* BodyPartTableViewController.swift */; };
 		C3DC16B828F96816008A6B3F /* ExerciseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DC16B728F96816008A6B3F /* ExerciseTableViewController.swift */; };
-		C3DC16BB28F96871008A6B3F /* BodyPart.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DC16BA28F96871008A6B3F /* BodyPart.swift */; };
-		C3DC16BD28F968CD008A6B3F /* Exercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DC16BC28F968CD008A6B3F /* Exercise.swift */; };
-		C3DC16BF28F96971008A6B3F /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DC16BE28F96971008A6B3F /* Session.swift */; };
+		C3DC16C228F99B42008A6B3F /* SetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DC16C128F99B42008A6B3F /* SetsViewController.swift */; };
+		C3DC16C528F9A5E3008A6B3F /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C3DC16C328F9A5E3008A6B3F /* DataModel.xcdatamodeld */; };
+		C3FBBA6928FC392700F469C9 /* PreviousSessionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FBBA6828FC392700F469C9 /* PreviousSessionsTableViewController.swift */; };
+		C3FBBA6B28FC398B00F469C9 /* SpecificSessionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FBBA6A28FC398B00F469C9 /* SpecificSessionTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,9 +32,10 @@
 		C3D3A3BC28F875FC00792F78 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C3D3A3C228F8765C00792F78 /* BodyPartTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyPartTableViewController.swift; sourceTree = "<group>"; };
 		C3DC16B728F96816008A6B3F /* ExerciseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseTableViewController.swift; sourceTree = "<group>"; };
-		C3DC16BA28F96871008A6B3F /* BodyPart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyPart.swift; sourceTree = "<group>"; };
-		C3DC16BC28F968CD008A6B3F /* Exercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise.swift; sourceTree = "<group>"; };
-		C3DC16BE28F96971008A6B3F /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		C3DC16C128F99B42008A6B3F /* SetsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetsViewController.swift; sourceTree = "<group>"; };
+		C3DC16C428F9A5E3008A6B3F /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		C3FBBA6828FC392700F469C9 /* PreviousSessionsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviousSessionsTableViewController.swift; sourceTree = "<group>"; };
+		C3FBBA6A28FC398B00F469C9 /* SpecificSessionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecificSessionTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,9 @@
 			children = (
 				C3D3A3C228F8765C00792F78 /* BodyPartTableViewController.swift */,
 				C3DC16B728F96816008A6B3F /* ExerciseTableViewController.swift */,
+				C3DC16C128F99B42008A6B3F /* SetsViewController.swift */,
+				C3FBBA6828FC392700F469C9 /* PreviousSessionsTableViewController.swift */,
+				C3FBBA6A28FC398B00F469C9 /* SpecificSessionTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -91,9 +96,7 @@
 		C3DC16B928F9684A008A6B3F /* Data model */ = {
 			isa = PBXGroup;
 			children = (
-				C3DC16BA28F96871008A6B3F /* BodyPart.swift */,
-				C3DC16BC28F968CD008A6B3F /* Exercise.swift */,
-				C3DC16BE28F96971008A6B3F /* Session.swift */,
+				C3DC16C328F9A5E3008A6B3F /* DataModel.xcdatamodeld */,
 			);
 			path = "Data model";
 			sourceTree = "<group>";
@@ -178,13 +181,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				C3D3A3C328F8765C00792F78 /* BodyPartTableViewController.swift in Sources */,
+				C3DC16C528F9A5E3008A6B3F /* DataModel.xcdatamodeld in Sources */,
 				C3DC16B828F96816008A6B3F /* ExerciseTableViewController.swift in Sources */,
 				C3D3A3AC28F875FA00792F78 /* AppDelegate.swift in Sources */,
 				C3D3A3B628F875FA00792F78 /* JimBro.xcdatamodeld in Sources */,
-				C3DC16BF28F96971008A6B3F /* Session.swift in Sources */,
-				C3DC16BB28F96871008A6B3F /* BodyPart.swift in Sources */,
-				C3DC16BD28F968CD008A6B3F /* Exercise.swift in Sources */,
+				C3FBBA6B28FC398B00F469C9 /* SpecificSessionTableViewController.swift in Sources */,
+				C3DC16C228F99B42008A6B3F /* SetsViewController.swift in Sources */,
 				C3D3A3AE28F875FA00792F78 /* SceneDelegate.swift in Sources */,
+				C3FBBA6928FC392700F469C9 /* PreviousSessionsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,6 +415,16 @@
 			);
 			currentVersion = C3D3A3B528F875FA00792F78 /* JimBro.xcdatamodel */;
 			path = JimBro.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		C3DC16C328F9A5E3008A6B3F /* DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				C3DC16C428F9A5E3008A6B3F /* DataModel.xcdatamodel */,
+			);
+			currentVersion = C3DC16C428F9A5E3008A6B3F /* DataModel.xcdatamodel */;
+			path = DataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

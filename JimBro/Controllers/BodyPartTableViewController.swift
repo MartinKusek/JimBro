@@ -6,16 +6,23 @@
 //
 
 import UIKit
+import CoreData
 
 class BodyPartTableViewController: UITableViewController {
-
-    var jimBro = JimBro()
+    
+    var muscles = [Muscle]()
     //var bodyParts = ["Back", "Chest", "Legs", "Arms", "Shoulders", "Abs", "More"]
+    
+    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(jimBro)
+        
+        print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
+        
+        loadMuscles()
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         
         guard let navBar =  navigationController?.navigationBar else {fatalError("Navigation controller does not exist.")}
@@ -28,16 +35,16 @@ class BodyPartTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return jimBro.bodyParts.count
+        return muscles.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "BodyPartCell", for: indexPath)
         
-        cell.textLabel?.text = jimBro.bodyParts[indexPath.row].name
+        cell.textLabel?.text = muscles[indexPath.row].name
         cell.textLabel?.font = .boldSystemFont(ofSize: 20)
-        cell.detailTextLabel?.text = "Deadlift, Pull ups, Dips"
+        //cell.detailTextLabel?.text = "Deadlift, Pull ups, Dips"
         
         return cell
     }
@@ -55,7 +62,43 @@ class BodyPartTableViewController: UITableViewController {
         let destinationVc = segue.destination as! ExerciseTableViewController
         
         if let indexPath = tableView.indexPathForSelectedRow {
-            destinationVc.selectedBodyPart = jimBro.bodyParts[indexPath.row]
+            destinationVc.selectedMuscle = muscles[indexPath.row]
         }
     }
+    
+     //MARK: - Data manipulation Methods
+    
+    func loadMuscles() {
+        
+        let request : NSFetchRequest<Muscle> = Muscle.fetchRequest()
+        
+        do {
+            muscles = try context.fetch(request)
+            
+            if muscles == [] {
+                
+                let musclesArray = ["Back", "Chest", "Legs", "Arms", "Shoulders", "Abs", "More"]
+                
+                for muscle in musclesArray {
+                    let muscles = Muscle(context: self.context)
+                    muscles.name = muscle
+                    
+                    do {
+                      try context.save()
+                    } catch {
+                       print("Error saving context \(error)")
+                    }
+                }
+                
+                muscles = try context.fetch(request)
+            }
+            
+        } catch {
+            print("Error loading categories \(error)")
+        }
+       
+        tableView.reloadData()
+        
+    }
+    
 }
