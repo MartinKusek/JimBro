@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C3091B8928FE940400EFE10E /* SwipeCellKit in Frameworks */ = {isa = PBXBuildFile; productRef = C3091B8828FE940400EFE10E /* SwipeCellKit */; };
+		C3091B8B28FE944300EFE10E /* SwipeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3091B8A28FE944300EFE10E /* SwipeTableViewController.swift */; };
 		C3D3A3AC28F875FA00792F78 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D3A3AB28F875FA00792F78 /* AppDelegate.swift */; };
 		C3D3A3AE28F875FA00792F78 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3D3A3AD28F875FA00792F78 /* SceneDelegate.swift */; };
 		C3D3A3B328F875FA00792F78 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3D3A3B128F875FA00792F78 /* Main.storyboard */; };
@@ -22,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C3091B8A28FE944300EFE10E /* SwipeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeTableViewController.swift; sourceTree = "<group>"; };
 		C3D3A3A828F875FA00792F78 /* JimBro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JimBro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3D3A3AB28F875FA00792F78 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C3D3A3AD28F875FA00792F78 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -43,6 +46,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3091B8928FE940400EFE10E /* SwipeCellKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,6 +93,7 @@
 				C3DC16C128F99B42008A6B3F /* SetsViewController.swift */,
 				C3FBBA6828FC392700F469C9 /* PreviousSessionsTableViewController.swift */,
 				C3FBBA6A28FC398B00F469C9 /* SpecificSessionTableViewController.swift */,
+				C3091B8A28FE944300EFE10E /* SwipeTableViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -125,6 +130,9 @@
 			dependencies = (
 			);
 			name = JimBro;
+			packageProductDependencies = (
+				C3091B8828FE940400EFE10E /* SwipeCellKit */,
+			);
 			productName = JimBro;
 			productReference = C3D3A3A828F875FA00792F78 /* JimBro.app */;
 			productType = "com.apple.product-type.application";
@@ -153,6 +161,9 @@
 				Base,
 			);
 			mainGroup = C3D3A39F28F875FA00792F78;
+			packageReferences = (
+				C3091B8728FE940400EFE10E /* XCRemoteSwiftPackageReference "SwipeCellKit" */,
+			);
 			productRefGroup = C3D3A3A928F875FA00792F78 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -184,6 +195,7 @@
 				C3DC16C528F9A5E3008A6B3F /* DataModel.xcdatamodeld in Sources */,
 				C3DC16B828F96816008A6B3F /* ExerciseTableViewController.swift in Sources */,
 				C3D3A3AC28F875FA00792F78 /* AppDelegate.swift in Sources */,
+				C3091B8B28FE944300EFE10E /* SwipeTableViewController.swift in Sources */,
 				C3D3A3B628F875FA00792F78 /* JimBro.xcdatamodeld in Sources */,
 				C3FBBA6B28FC398B00F469C9 /* SpecificSessionTableViewController.swift in Sources */,
 				C3DC16C228F99B42008A6B3F /* SetsViewController.swift in Sources */,
@@ -406,6 +418,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C3091B8728FE940400EFE10E /* XCRemoteSwiftPackageReference "SwipeCellKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwipeCellKit/SwipeCellKit";
+			requirement = {
+				branch = develop;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C3091B8828FE940400EFE10E /* SwipeCellKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C3091B8728FE940400EFE10E /* XCRemoteSwiftPackageReference "SwipeCellKit" */;
+			productName = SwipeCellKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		C3D3A3B428F875FA00792F78 /* JimBro.xcdatamodeld */ = {

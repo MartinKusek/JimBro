@@ -8,7 +8,7 @@
 import UIKit
 import CoreData
 
-class ExerciseTableViewController: UITableViewController {
+class ExerciseTableViewController: SwipeTableViewController {
     
     var exerciseArray = [Exercise]()
     
@@ -20,17 +20,17 @@ class ExerciseTableViewController: UITableViewController {
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print(exerciseArray.count)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
         title = selectedMuscle!.name
     }
-
+    
     //MARK: - Add action
     
     @IBAction func addExercise(_ sender: Any) {
@@ -51,7 +51,7 @@ class ExerciseTableViewController: UITableViewController {
         }
         
         alert.addTextField { (alertTextField) in
-            alertTextField.placeholder = "Create new item"
+            alertTextField.placeholder = "Exercise Name..."
             textField = alertTextField
             
         }
@@ -64,26 +64,28 @@ class ExerciseTableViewController: UITableViewController {
     }
     
     // MARK: - Table view data source
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return exerciseArray.count
+            return exerciseArray.count
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ExerciseCell", for: indexPath)
-        let item = exerciseArray[indexPath.row]
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
         
-        cell.textLabel?.text = item.name
+        cell.textLabel?.text = exerciseArray[indexPath.row].name ?? "No Exercises Added Yet"
         return cell
     }
     
-     //MARK: - Table view delegate
+    //MARK: - Table view delegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         performSegue(withIdentifier: "exerciseToSets", sender: self)
+//        context.delete(exerciseArray[indexPath.row])
+//        exerciseArray.remove(at: indexPath.row)
+//        saveExercises()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -95,37 +97,53 @@ class ExerciseTableViewController: UITableViewController {
         }
     }
     
-     //MARK: - Model Manupulation Methods
+    //MARK: - Model Manupulation Methods
     
     func saveExercises() {
         
         do {
-          try context.save()
+            try context.save()
         } catch {
-           print("Error saving context \(error)")
+            print("Error saving context \(error)")
         }
         
         self.tableView.reloadData()
     }
     
     func loadExercises(with request: NSFetchRequest<Exercise> = Exercise.fetchRequest(), predicate: NSPredicate? = nil) {
-
+        
         let exercisePredicate = NSPredicate(format: "parentMuscle.name MATCHES %@", selectedMuscle!.name!)
-
+        
         if let addtionalPredicate = predicate {
             request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [exercisePredicate, addtionalPredicate])
         } else {
             request.predicate = exercisePredicate
         }
-
-
+        
+        
         do {
             exerciseArray = try context.fetch(request)
         } catch {
             print("Error fetching data from context \(error)")
         }
-
+        
         tableView.reloadData()
-
+        
     }
+    
+     //MARK: - Delete Data From Swipe
+    
+    override func updateModel(at indexPath: IndexPath) {
+        
+        context.delete(exerciseArray[indexPath.row])
+        exerciseArray.remove(at: indexPath.row)
+        
+        do {
+            try context.save()
+        } catch {
+            print("Error saving context \(error)")
+        }
+        
+    }
+    
 }

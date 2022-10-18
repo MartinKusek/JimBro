@@ -11,7 +11,6 @@ import CoreData
 class BodyPartTableViewController: UITableViewController {
     
     var muscles = [Muscle]()
-    //var bodyParts = ["Back", "Chest", "Legs", "Arms", "Shoulders", "Abs", "More"]
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
@@ -24,11 +23,6 @@ class BodyPartTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
-        guard let navBar =  navigationController?.navigationBar else {fatalError("Navigation controller does not exist.")}
-
-        navBar.backgroundColor = UIColor(named: "1D9BF6")
-        navBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(ciColor: .red)]
     }
 
     // MARK: - Table view data source

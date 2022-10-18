@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreData
+import SwipeCellKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
