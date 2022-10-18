@@ -83,9 +83,7 @@ class ExerciseTableViewController: SwipeTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         performSegue(withIdentifier: "exerciseToSets", sender: self)
-//        context.delete(exerciseArray[indexPath.row])
-//        exerciseArray.remove(at: indexPath.row)
-//        saveExercises()
+
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
