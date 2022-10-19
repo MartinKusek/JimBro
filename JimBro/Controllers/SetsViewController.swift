@@ -141,7 +141,17 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
     //MARK: - Table View Data Source
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
+        if setsArray.isEmpty {
+            
+            let noDataLabel: UILabel = UILabel()
+            noDataLabel.text = "No sets added today..."
+            noDataLabel.textColor = UIColor(red: 22.0/255.0, green: 106.0/255.0, blue: 176.0/255.0, alpha: 1.0)
+            noDataLabel.textAlignment = NSTextAlignment.center
+            self.tableView.backgroundView = noDataLabel
+            
+        } else {
+            self.tableView.backgroundView = nil
+        }
         return setsArray.count
     }
     
@@ -155,7 +165,29 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     
-    //MARK: - Table View Delegate
+    //MARK: - Deleting Cells
     
+     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .delete
+    }
+    
+     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == .delete {
+            tableView.beginUpdates()
+
+            context.delete(setsArray[indexPath.row])
+            do {
+                try context.save()
+            } catch {
+                print("Error saving context \(error)")
+            }
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            setsArray.remove(at: indexPath.row)
+            
+            tableView.endUpdates()
+        }
+        
+    }
     
 }

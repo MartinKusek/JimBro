@@ -47,8 +47,19 @@ class PreviousSessionsTableViewController: UITableViewController {
     // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
+        if dateArray.isEmpty {
+            
+            let noDataLabel: UILabel = UILabel()
+            noDataLabel.text = "No previous sessions"
+            noDataLabel.textColor = UIColor(red: 22.0/255.0, green: 106.0/255.0, blue: 176.0/255.0, alpha: 1.0)
+            noDataLabel.textAlignment = NSTextAlignment.center
+            self.tableView.backgroundView = noDataLabel
+            
+        } else {
+            self.tableView.backgroundView = nil
+        }
         return dateArray.removingDuplicates().count
+        
     }
     
     
