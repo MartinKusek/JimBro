@@ -20,17 +20,17 @@ class ExerciseTableViewController: UITableViewController {
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print("number of rows is empty \(tableView.numberOfRows(inSection: 0))")
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
         title = selectedMuscle!.name
     }
-
+    
     //MARK: - Add action
     
     @IBAction func addExercise(_ sender: Any) {
@@ -64,12 +64,22 @@ class ExerciseTableViewController: UITableViewController {
     }
     
     // MARK: - Table view data source
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
+        if exerciseArray.isEmpty {
+            
+            let noDataLabel: UILabel = UILabel()
+            noDataLabel.text = "No exercises added yet..."
+            noDataLabel.textColor = UIColor(red: 22.0/255.0, green: 106.0/255.0, blue: 176.0/255.0, alpha: 1.0)
+            noDataLabel.textAlignment = NSTextAlignment.center
+            self.tableView.backgroundView = noDataLabel
+            
+        } else {
+            self.tableView.backgroundView = nil
+        }
         return exerciseArray.count
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "ExerciseCell", for: indexPath)
@@ -79,7 +89,8 @@ class ExerciseTableViewController: UITableViewController {
         return cell
     }
     
-     //MARK: - Table view delegate
+    
+    //MARK: - Table view delegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
@@ -95,37 +106,62 @@ class ExerciseTableViewController: UITableViewController {
         }
     }
     
-     //MARK: - Model Manupulation Methods
+    //MARK: - Deleting Cells
+    
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .delete
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == .delete {
+            tableView.beginUpdates()
+
+            context.delete(exerciseArray[indexPath.row])
+            do {
+                try context.save()
+            } catch {
+                print("Error saving context \(error)")
+            }
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            exerciseArray.remove(at: indexPath.row)
+            
+            tableView.endUpdates()
+        }
+        
+    }
+    
+    //MARK: - Model Manupulation Methods
     
     func saveExercises() {
         
         do {
-          try context.save()
+            try context.save()
         } catch {
-           print("Error saving context \(error)")
+            print("Error saving context \(error)")
         }
         
         self.tableView.reloadData()
     }
     
     func loadExercises(with request: NSFetchRequest<Exercise> = Exercise.fetchRequest(), predicate: NSPredicate? = nil) {
-
+        
         let exercisePredicate = NSPredicate(format: "parentMuscle.name MATCHES %@", selectedMuscle!.name!)
-
+        
         if let addtionalPredicate = predicate {
             request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [exercisePredicate, addtionalPredicate])
         } else {
             request.predicate = exercisePredicate
         }
-
-
+        
+        
         do {
             exerciseArray = try context.fetch(request)
         } catch {
             print("Error fetching data from context \(error)")
         }
-
+        
         tableView.reloadData()
-
+        
     }
 }
