@@ -50,7 +50,14 @@ class ExerciseTableViewController: UITableViewController {
             textField = alertTextField
         }
         alert.addAction(action)
-        present(alert, animated: true, completion: nil)
+        present(alert, animated: true, completion:  {
+            alert.view.superview?.isUserInteractionEnabled = true
+            alert.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.dismissOnTapOutside)))
+        })
+    }
+    
+    @objc func dismissOnTapOutside(){
+       self.dismiss(animated: true, completion: nil)
     }
     
     // MARK: - Table view data source
