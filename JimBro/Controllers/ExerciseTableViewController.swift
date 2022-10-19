@@ -18,12 +18,9 @@ class ExerciseTableViewController: UITableViewController {
         }
     }
     
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("number of rows is empty \(tableView.numberOfRows(inSection: 0))")
+        tableView.separatorStyle = .none
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,9 +36,8 @@ class ExerciseTableViewController: UITableViewController {
         let alert = UIAlertController(title: "Add New Exercise", message: "", preferredStyle: .alert)
         
         let action = UIAlertAction(title: "Add Exercise", style: .default) { (action) in
-            //what will happen once the user clicks the Add Item button on our UIAlert
             
-            let newExercise = Exercise(context: self.context)
+            let newExercise = Exercise(context: K.CoreData.context)
             newExercise.name = textField.text!
             newExercise.parentMuscle = self.selectedMuscle
             
@@ -49,18 +45,12 @@ class ExerciseTableViewController: UITableViewController {
             
             self.saveExercises()
         }
-        
         alert.addTextField { (alertTextField) in
-            alertTextField.placeholder = "Create new item"
+            alertTextField.placeholder = "Exercise name"
             textField = alertTextField
-            
         }
-        
-        
         alert.addAction(action)
-        
         present(alert, animated: true, completion: nil)
-        
     }
     
     // MARK: - Table view data source
@@ -116,10 +106,10 @@ class ExerciseTableViewController: UITableViewController {
         
         if editingStyle == .delete {
             tableView.beginUpdates()
-
-            context.delete(exerciseArray[indexPath.row])
+            
+            K.CoreData.context.delete(exerciseArray[indexPath.row])
             do {
-                try context.save()
+                try K.CoreData.context.save()
             } catch {
                 print("Error saving context \(error)")
             }
@@ -136,11 +126,10 @@ class ExerciseTableViewController: UITableViewController {
     func saveExercises() {
         
         do {
-            try context.save()
+            try K.CoreData.context.save()
         } catch {
             print("Error saving context \(error)")
         }
-        
         self.tableView.reloadData()
     }
     
@@ -154,14 +143,13 @@ class ExerciseTableViewController: UITableViewController {
             request.predicate = exercisePredicate
         }
         
-        
         do {
-            exerciseArray = try context.fetch(request)
+            exerciseArray = try K.CoreData.context.fetch(request)
         } catch {
             print("Error fetching data from context \(error)")
         }
         
         tableView.reloadData()
-        
     }
+    
 }

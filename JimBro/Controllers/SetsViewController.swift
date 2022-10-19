@@ -17,17 +17,15 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var todaysDate = Date()
     let TodaysDateFormatter = DateFormatter()
     
-    
     var selectedExercise: Exercise?
-    
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
+
     var date = Date()
     let dateFormatter = DateFormatter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.separatorStyle = .none
         title = selectedExercise?.name
         self.tableView.dataSource = self
         self.tableView.delegate = self
@@ -35,11 +33,9 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         TodaysDateFormatter.dateFormat = "d. M. y."
         let date = TodaysDateFormatter.string(from: todaysDate)
         
-        let request : NSFetchRequest<Sets> = Sets.fetchRequest()
         let predicate = NSPredicate(format: "date MATCHES %@", date)
         
-        loadSets(with: request, predicate: predicate)
-        
+        loadSets(predicate: predicate)
     }
     
     //MARK: - Add Button Action
@@ -51,11 +47,10 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let alert = UIAlertController(title: "Set \(self.setsArray.count + 1):", message: "", preferredStyle: .alert)
         
         let action = UIAlertAction(title: "Add Set", style: .default) { (action) in
-            //what will happen once the user clicks the Add Item button on our UIAlert
             
             let textFieldString = "Set \(self.setsArray.count + 1): \(KgTextField.text!) kg x \(RepsTextField.text!) reps"
             
-            let newSet = Sets(context: self.context)
+            let newSet = Sets(context: K.CoreData.context)
             newSet.set = textFieldString
             newSet.parentExercise = self.selectedExercise
             
@@ -72,17 +67,14 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         alert.addTextField { (alertTextField) in
             alertTextField.placeholder = "Kg"
             KgTextField = alertTextField
-            
         }
+        
         alert.addTextField { (alertTextField) in
             alertTextField.placeholder = "Reps"
             RepsTextField = alertTextField
-            
         }
         
-        
         alert.addAction(action)
-        
         present(alert, animated: true, completion: nil)
     }
     
@@ -109,7 +101,7 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func saveSets() {
         
         do {
-            try context.save()
+            try K.CoreData.context.save()
         } catch {
             print("Error saving context \(error)")
         }
@@ -127,16 +119,14 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
             request.predicate = setsPredicate
         }
         
-        
         do {
-            setsArray = try context.fetch(request)
+            setsArray = try K.CoreData.context.fetch(request)
         } catch {
             print("Error fetching data from context \(error)")
         }
         
         self.tableView.reloadData()
     }
-    
     
     //MARK: - Table View Data Source
     
@@ -164,21 +154,20 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return cell
     }
     
-    
     //MARK: - Deleting Cells
     
-     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return .delete
     }
     
-     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         
         if editingStyle == .delete {
             tableView.beginUpdates()
-
-            context.delete(setsArray[indexPath.row])
+            
+            K.CoreData.context.delete(setsArray[indexPath.row])
             do {
-                try context.save()
+                try K.CoreData.context.save()
             } catch {
                 print("Error saving context \(error)")
             }
@@ -187,7 +176,6 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
             tableView.endUpdates()
         }
-        
     }
     
 }

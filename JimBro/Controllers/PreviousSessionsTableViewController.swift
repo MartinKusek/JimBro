@@ -34,14 +34,10 @@ class PreviousSessionsTableViewController: UITableViewController {
         }
     }
     
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.separatorStyle = .none
-        
     }
     
     // MARK: - Table view data source
@@ -59,16 +55,12 @@ class PreviousSessionsTableViewController: UITableViewController {
             self.tableView.backgroundView = nil
         }
         return dateArray.removingDuplicates().count
-        
     }
-    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "sessionsCell", for: indexPath)
         
         cell.textLabel?.text = "\(String(describing: dateArray.removingDuplicates()[indexPath.row]))"
-        
-        // Configure the cell...
         
         return cell
     }
@@ -104,9 +96,8 @@ class PreviousSessionsTableViewController: UITableViewController {
             request.predicate = setsPredicate
         }
         
-        
         do {
-            setsArray = try context.fetch(request)
+            setsArray = try K.CoreData.context.fetch(request)
         } catch {
             print("Error fetching data from context \(error)")
         }
@@ -122,9 +113,5 @@ extension Array where Element: Hashable {
         return filter {
             addedDict.updateValue(true, forKey: $0) == nil
         }
-    }
-    
-    mutating func removeDuplicates() {
-        self = self.removingDuplicates()
     }
 }

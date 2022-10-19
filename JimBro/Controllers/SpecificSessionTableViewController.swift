@@ -12,6 +12,7 @@ class SpecificSessionTableViewController: UITableViewController {
     
     var setsArray = [Sets]()
     var selectedExerciseInSpecificSessions: Exercise?
+    
     var selectedDate = "" {
         didSet {
             let datePredicate = NSPredicate(format: "date MATCHES %@", selectedDate)
@@ -19,32 +20,30 @@ class SpecificSessionTableViewController: UITableViewController {
         }
     }
     
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.separatorStyle = .none
     }
-
+    
     // MARK: - Table view data source
-
-
+    
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
+        
         return setsArray.count
     }
-
+    
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "specificSetCell", for: indexPath)
-
+        
         cell.textLabel?.text = setsArray[indexPath.row].set
-
+        
         return cell
     }
- 
-     //MARK: - Data Manipulation Methods
+    
+    //MARK: - Data Manipulation Methods
     
     func loadSets(with request: NSFetchRequest<Sets> = Sets.fetchRequest(), predicate: NSPredicate? = nil) {
         
@@ -56,9 +55,8 @@ class SpecificSessionTableViewController: UITableViewController {
             request.predicate = setsPredicate
         }
         
-        
         do {
-            setsArray = try context.fetch(request)
+            setsArray = try K.CoreData.context.fetch(request)
         } catch {
             print("Error fetching data from context \(error)")
         }
