@@ -142,7 +142,7 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
             let noDataLabel: UILabel = UILabel()
             noDataLabel.text = "No sets added today..."
-            noDataLabel.textColor = UIColor(red: 22.0/255.0, green: 106.0/255.0, blue: 176.0/255.0, alpha: 1.0)
+            noDataLabel.textColor = UIColor.gray
             noDataLabel.textAlignment = NSTextAlignment.center
             self.tableView.backgroundView = noDataLabel
             

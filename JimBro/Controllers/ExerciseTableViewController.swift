@@ -67,7 +67,7 @@ class ExerciseTableViewController: UITableViewController {
             
             let noDataLabel: UILabel = UILabel()
             noDataLabel.text = "No exercises added yet..."
-            noDataLabel.textColor = UIColor(red: 22.0/255.0, green: 106.0/255.0, blue: 176.0/255.0, alpha: 1.0)
+            noDataLabel.textColor = UIColor.gray
             noDataLabel.textAlignment = NSTextAlignment.center
             self.tableView.backgroundView = noDataLabel
             
@@ -110,11 +110,16 @@ class ExerciseTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        let exerciseForDeletion = exerciseArray[indexPath.row]
         
         if editingStyle == .delete {
             tableView.beginUpdates()
             
-            K.CoreData.context.delete(exerciseArray[indexPath.row])
+            for sets in exerciseForDeletion.sets! {
+                K.CoreData.context.delete(sets as! NSManagedObject)
+            }
+                    
+            K.CoreData.context.delete(exerciseForDeletion)
             do {
                 try K.CoreData.context.save()
             } catch {
