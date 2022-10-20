@@ -10,10 +10,15 @@ import CoreData
 
 class BodyPartTableViewController: UITableViewController {
     
+    @IBOutlet weak var titleLabel: UILabel!
+    
     var muscles = [Muscle]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.separatorStyle = .none
+        //tableView.rowHeight = 50
+        
         
         print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
         
@@ -21,27 +26,60 @@ class BodyPartTableViewController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+            navigationController?.setNavigationBarHidden(true, animated: animated)
         
-        guard let navBar =  navigationController?.navigationBar else {fatalError("Navigation controller does not exist.")}
-        
-        navBar.backgroundColor = UIColor(named: "1D9BF6")
-        navBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor(ciColor: .red)]
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+            navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(false)
+        //self.centerTitle()
     }
     
     // MARK: - Table view data source
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return muscles.count
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 0
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+                headerView.backgroundColor = UIColor.clear
+                return headerView
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "BodyPartCell", for: indexPath)
         
-        cell.textLabel?.text = muscles[indexPath.row].name
+        cell.textLabel?.text = muscles[indexPath.section].name
         cell.textLabel?.font = .boldSystemFont(ofSize: 20)
         
+        cell.layer.borderColor = UIColor.black.cgColor
+        cell.layer.borderWidth = 1
+        cell.layer.cornerRadius = 16
+        cell.clipsToBounds = true
+        
+        //Detail text label
+        let muscle = muscles[indexPath.section]
+        var exerciseArray = [String]()
+        for exercise in muscle.exercises! {
+            exerciseArray.append((exercise as AnyObject).name)
+        }
+        cell.detailTextLabel?.text = "\(exerciseArray.joined(separator: ", "))"
         return cell
     }
     
@@ -58,7 +96,7 @@ class BodyPartTableViewController: UITableViewController {
         let destinationVc = segue.destination as! ExerciseTableViewController
         
         if let indexPath = tableView.indexPathForSelectedRow {
-            destinationVc.selectedMuscle = muscles[indexPath.row]
+            destinationVc.selectedMuscle = muscles[indexPath.section]
         }
     }
     
@@ -98,3 +136,16 @@ class BodyPartTableViewController: UITableViewController {
     }
     
 }
+
+//extension BodyPartTableViewController{
+//    func centerTitle(){
+//        for navItem in(self.navigationController?.navigationBar.subviews)! {
+//             for itemSubView in navItem.subviews {
+//                 if let largeLabel = itemSubView as? UILabel {
+//                    largeLabel.center = CGPoint(x: navItem.bounds.width/2, y: navItem.bounds.height/2)
+//                    return;
+//                 }
+//             }
+//        }
+//    }
+//}
