@@ -24,6 +24,7 @@ class SpecificSessionTableViewController: UITableViewController {
         super.viewDidLoad()
         
         tableView.separatorStyle = .none
+        title = selectedDate
     }
     
     // MARK: - Table view data source

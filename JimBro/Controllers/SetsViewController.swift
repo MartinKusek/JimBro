@@ -46,7 +46,7 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         let alert = UIAlertController(title: "Set \(self.setsArray.count + 1):", message: "", preferredStyle: .alert)
         
-        let action = UIAlertAction(title: "Add Set", style: .default) { (action) in
+        let action = UIAlertAction(title: "Add", style: .default) { (action) in
             
             let textFieldString = "Set \(self.setsArray.count + 1): \(KgTextField.text!) kg x \(RepsTextField.text!) reps"
             

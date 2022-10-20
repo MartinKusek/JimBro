@@ -35,7 +35,7 @@ class ExerciseTableViewController: UITableViewController {
         
         let alert = UIAlertController(title: "Add New Exercise", message: "", preferredStyle: .alert)
         
-        let action = UIAlertAction(title: "Add Exercise", style: .default) { (action) in
+        let action = UIAlertAction(title: "Add", style: .default) { (action) in
             
             let newExercise = Exercise(context: K.CoreData.context)
             newExercise.name = textField.text!
