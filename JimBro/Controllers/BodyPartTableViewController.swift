@@ -16,10 +16,10 @@ class BodyPartTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.separatorStyle = .none
+        //tableView.separatorStyle = .none
         //tableView.rowHeight = 50
-        
-        
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
+
         print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
         
         loadMuscles()
@@ -42,39 +42,19 @@ class BodyPartTableViewController: UITableViewController {
     
     // MARK: - Table view data source
     
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return muscles.count
-    }
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-    
-    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 0
-    }
-    
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = UIView()
-                headerView.backgroundColor = UIColor.clear
-                return headerView
+        return muscles.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "BodyPartCell", for: indexPath)
         
-        cell.textLabel?.text = muscles[indexPath.section].name
+        cell.textLabel?.text = muscles[indexPath.row].name
         cell.textLabel?.font = .boldSystemFont(ofSize: 20)
         
-        cell.layer.borderColor = UIColor.black.cgColor
-        cell.layer.borderWidth = 1
-        cell.layer.cornerRadius = 16
-        cell.clipsToBounds = true
-        
         //Detail text label
-        let muscle = muscles[indexPath.section]
+        let muscle = muscles[indexPath.row]
         var exerciseArray = [String]()
         for exercise in muscle.exercises! {
             exerciseArray.append((exercise as AnyObject).name)
@@ -96,7 +76,7 @@ class BodyPartTableViewController: UITableViewController {
         let destinationVc = segue.destination as! ExerciseTableViewController
         
         if let indexPath = tableView.indexPathForSelectedRow {
-            destinationVc.selectedMuscle = muscles[indexPath.section]
+            destinationVc.selectedMuscle = muscles[indexPath.row]
         }
     }
     

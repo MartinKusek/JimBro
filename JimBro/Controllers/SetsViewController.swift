@@ -24,8 +24,10 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
         tableView.separatorStyle = .none
+
+        
         title = selectedExercise?.name
         self.tableView.dataSource = self
         self.tableView.delegate = self
@@ -143,6 +145,7 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let noDataLabel: UILabel = UILabel()
             noDataLabel.text = "No sets added today..."
             noDataLabel.textColor = UIColor.gray
+            noDataLabel.backgroundColor = UIColor.clear
             noDataLabel.textAlignment = NSTextAlignment.center
             self.tableView.backgroundView = noDataLabel
             

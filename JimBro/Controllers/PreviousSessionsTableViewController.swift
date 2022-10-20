@@ -37,7 +37,7 @@ class PreviousSessionsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.separatorStyle = .none
+                self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
     }
     
     // MARK: - Table view data source

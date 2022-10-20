@@ -20,7 +20,8 @@ class ExerciseTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.separatorStyle = .none
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -68,6 +69,7 @@ class ExerciseTableViewController: UITableViewController {
             let noDataLabel: UILabel = UILabel()
             noDataLabel.text = "No exercises added yet..."
             noDataLabel.textColor = UIColor.gray
+            noDataLabel.backgroundColor = UIColor.clear
             noDataLabel.textAlignment = NSTextAlignment.center
             self.tableView.backgroundView = noDataLabel
             
