@@ -97,7 +97,7 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let navigationVc = segue.destination as! UINavigationController
             let destinationVc = navigationVc.topViewController as! PreviousSessionsTableViewController
             
-            destinationVc.selectedExerciseInSessions = selectedExercise
+            destinationVc.selectedExercise = selectedExercise
         }
     }
     

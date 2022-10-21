@@ -17,7 +17,7 @@ class PreviousSessionsTableViewController: UITableViewController {
     var date = Date()
     let dateFormatter = DateFormatter()
     
-    var selectedExerciseInSessions: Exercise? {
+    var selectedExercise: Exercise? {
         didSet {
             loadSets()
             
@@ -64,7 +64,7 @@ class PreviousSessionsTableViewController: UITableViewController {
         
         let destinationVc = segue.destination as! SpecificSessionTableViewController
         
-        destinationVc.selectedExerciseInSpecificSessions = selectedExerciseInSessions
+        destinationVc.selectedExercise = selectedExercise
         
         if let indexPath = tableView.indexPathForSelectedRow {
             destinationVc.selectedDate = cleanDateArray[indexPath.row]
@@ -76,7 +76,7 @@ class PreviousSessionsTableViewController: UITableViewController {
     
     func loadSets(with request: NSFetchRequest<Sets> = Sets.fetchRequest(), predicate: NSPredicate? = nil) {
         
-        let setsPredicate = NSPredicate(format: "parentExercise.name MATCHES %@", selectedExerciseInSessions!.name!)
+        let setsPredicate = NSPredicate(format: "parentExercise.name MATCHES %@", selectedExercise!.name!)
         
         if let addtionalPredicate = predicate {
             request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [setsPredicate, addtionalPredicate])

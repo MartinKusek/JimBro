@@ -11,7 +11,7 @@ import CoreData
 class SpecificSessionTableViewController: UITableViewController {
     
     var setsArray = [Sets]()
-    var selectedExerciseInSpecificSessions: Exercise?
+    var selectedExercise: Exercise?
     
     var selectedDate = "" {
         didSet {
@@ -33,15 +33,15 @@ class SpecificSessionTableViewController: UITableViewController {
     
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         return setsArray.count
     }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "specificSetCell", for: indexPath)
+        let set = setsArray[indexPath.row]
         
-        cell.textLabel?.text = setsArray[indexPath.row].set
+        cell.textLabel?.text = set.set
         
         return cell
     }
@@ -50,7 +50,7 @@ class SpecificSessionTableViewController: UITableViewController {
     
     func loadSets(with request: NSFetchRequest<Sets> = Sets.fetchRequest(), predicate: NSPredicate? = nil) {
         
-        let setsPredicate = NSPredicate(format: "parentExercise.name MATCHES %@", selectedExerciseInSpecificSessions!.name!)
+        let setsPredicate = NSPredicate(format: "parentExercise.name MATCHES %@", selectedExercise!.name!)
         
         if let addtionalPredicate = predicate {
             request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [setsPredicate, addtionalPredicate])
