@@ -20,5 +20,128 @@
             landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7B9CE83E-320B-4979-ABFD-E96BFCB9913F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "JimBro/Controllers/ExerciseTableViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
+            landmarkName = "selectedMuscle"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "7B9CE83E-320B-4979-ABFD-E96BFCB9913F - 94bc874de148aa09"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "JimBro.ExerciseTableViewController.selectedMuscle.getter : Swift.Optional&lt;JimBro.Muscle&gt;"
+                  moduleName = "JimBro"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/martinkusek/Documents/IOs/GymProject/JimBro/JimBro/Controllers/ExerciseTableViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "88">
+               </Location>
+               <Location
+                  uuid = "7B9CE83E-320B-4979-ABFD-E96BFCB9913F - 8daa9f64416d605"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "JimBro.ExerciseTableViewController.selectedMuscle.setter : Swift.Optional&lt;JimBro.Muscle&gt;"
+                  moduleName = "JimBro"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/martinkusek/Documents/IOs/GymProject/JimBro/JimBro/Controllers/ExerciseTableViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "112">
+               </Location>
+               <Location
+                  uuid = "7B9CE83E-320B-4979-ABFD-E96BFCB9913F - 37e470063dc5cf04"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "JimBro.ExerciseTableViewController.selectedMuscle.modify : Swift.Optional&lt;JimBro.Muscle&gt;"
+                  moduleName = "JimBro"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/martinkusek/Documents/IOs/GymProject/JimBro/JimBro/Controllers/ExerciseTableViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  uuid = "7B9CE83E-320B-4979-ABFD-E96BFCB9913F - 496b6882ae3d9e64"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "JimBro.ExerciseTableViewController.selectedMuscle.modify : Swift.Optional&lt;JimBro.Muscle&gt; with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "JimBro"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/martinkusek/Documents/IOs/GymProject/JimBro/JimBro/Controllers/ExerciseTableViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  uuid = "7B9CE83E-320B-4979-ABFD-E96BFCB9913F - fb45acb33fffc223"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "JimBro.ExerciseTableViewController.init(style: __C.UITableViewStyle) -&gt; JimBro.ExerciseTableViewController"
+                  moduleName = "JimBro"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/martinkusek/Documents/IOs/GymProject/JimBro/JimBro/Controllers/ExerciseTableViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "136">
+               </Location>
+               <Location
+                  uuid = "7B9CE83E-320B-4979-ABFD-E96BFCB9913F - f5bb3d845bf8ad9d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "JimBro.ExerciseTableViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; JimBro.ExerciseTableViewController"
+                  moduleName = "JimBro"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/martinkusek/Documents/IOs/GymProject/JimBro/JimBro/Controllers/ExerciseTableViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "160">
+               </Location>
+               <Location
+                  uuid = "7B9CE83E-320B-4979-ABFD-E96BFCB9913F - a2c542ee0df6fc27"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "JimBro.ExerciseTableViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;JimBro.ExerciseTableViewController&gt;"
+                  moduleName = "JimBro"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/martinkusek/Documents/IOs/GymProject/JimBro/JimBro/Controllers/ExerciseTableViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "136">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

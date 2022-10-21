@@ -12,11 +12,8 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     @IBOutlet weak var tableView: UITableView!
     
+    var brain = JimBrain()
     var setsArray = [Sets]()
-    
-    var todaysDate = Date()
-    let TodaysDateFormatter = DateFormatter()
-    
     var selectedExercise: Exercise?
 
     var date = Date()
@@ -29,15 +26,19 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
         
         title = selectedExercise?.name
-        self.tableView.dataSource = self
-        self.tableView.delegate = self
+        configureTableView()
         
-        TodaysDateFormatter.dateFormat = "d. M. y."
-        let date = TodaysDateFormatter.string(from: todaysDate)
+        dateFormatter.dateFormat = "d. M. y."
+        let date = dateFormatter.string(from: date)
         
         let predicate = NSPredicate(format: "date MATCHES %@", date)
         
         loadSets(predicate: predicate)
+    }
+    
+    func configureTableView() {
+        self.tableView.dataSource = self
+        self.tableView.delegate = self
     }
     
     //MARK: - Add Button Action
@@ -50,20 +51,15 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         let action = UIAlertAction(title: "Add", style: .default) { (action) in
             
-            let textFieldString = "Set \(self.setsArray.count + 1): \(KgTextField.text!) kg x \(RepsTextField.text!) reps"
-            
             let newSet = Sets(context: K.CoreData.context)
-            newSet.set = textFieldString
+            newSet.set = self.brain.getSetsString(set: self.setsArray.count + 1, kg: KgTextField.text!, reps: RepsTextField.text!)
             newSet.parentExercise = self.selectedExercise
-            
-            self.dateFormatter.dateFormat = "d. M. y."
-            
+                        
             newSet.date = self.dateFormatter.string(from: self.date)
             
             self.setsArray.append(newSet)
             
             self.saveSets()
-            self.tableView.separatorStyle = .none
         }
         
         alert.addTextField { (alertTextField) in
@@ -105,50 +101,13 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
     
-    //MARK: - Model Manuplation Methods
-    
-    func saveSets() {
-        
-        do {
-            try K.CoreData.context.save()
-        } catch {
-            print("Error saving context \(error)")
-        }
-        
-        self.tableView.reloadData()
-    }
-    
-    func loadSets(with request: NSFetchRequest<Sets> = Sets.fetchRequest(), predicate: NSPredicate? = nil) {
-        
-        let setsPredicate = NSPredicate(format: "parentExercise.name MATCHES %@", selectedExercise!.name!)
-        
-        if let addtionalPredicate = predicate {
-            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [setsPredicate, addtionalPredicate])
-        } else {
-            request.predicate = setsPredicate
-        }
-        
-        do {
-            setsArray = try K.CoreData.context.fetch(request)
-        } catch {
-            print("Error fetching data from context \(error)")
-        }
-        
-        self.tableView.reloadData()
-    }
+  
     
     //MARK: - Table View Data Source
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if setsArray.isEmpty {
-            
-            let noDataLabel: UILabel = UILabel()
-            noDataLabel.text = "No sets added today..."
-            noDataLabel.textColor = UIColor.gray
-            noDataLabel.backgroundColor = UIColor.clear
-            noDataLabel.textAlignment = NSTextAlignment.center
-            self.tableView.backgroundView = noDataLabel
-            
+            self.tableView.backgroundView = brain.getNoDataLabel(text: "No sets added yet")
         } else {
             self.tableView.backgroundView = nil
         }
@@ -186,6 +145,38 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
             
             tableView.endUpdates()
         }
+    }
+    
+    //MARK: - Model Manuplation Methods
+    
+    func saveSets() {
+        
+        do {
+            try K.CoreData.context.save()
+        } catch {
+            print("Error saving context \(error)")
+        }
+        
+        self.tableView.reloadData()
+    }
+    
+    func loadSets(with request: NSFetchRequest<Sets> = Sets.fetchRequest(), predicate: NSPredicate? = nil) {
+        
+        let setsPredicate = NSPredicate(format: "parentExercise.name MATCHES %@", selectedExercise!.name!)
+        
+        if let addtionalPredicate = predicate {
+            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [setsPredicate, addtionalPredicate])
+        } else {
+            request.predicate = setsPredicate
+        }
+        
+        do {
+            setsArray = try K.CoreData.context.fetch(request)
+        } catch {
+            print("Error fetching data from context \(error)")
+        }
+        
+        self.tableView.reloadData()
     }
     
 }

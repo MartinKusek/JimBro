@@ -115,14 +115,30 @@ struct JimBrain {
         }
     }
     
-    func getNoDataLabel() -> UILabel {
+    func getNoDataLabel(text: String) -> UILabel {
         
         let noDataLabel: UILabel = UILabel()
-        noDataLabel.text = "No exercises added yet..."
+        noDataLabel.text = text
         noDataLabel.textColor = UIColor.gray
         noDataLabel.backgroundColor = UIColor.clear
         noDataLabel.textAlignment = NSTextAlignment.center
         return noDataLabel
+    }
+    
+    func getSetsString(set: Int, kg: String, reps: String) -> String {
+        
+        var stringKg = "\(kg) kg"
+        if kg == "" || kg == "0" || kg == "1" {
+            stringKg = "Bodyweight"
+        }
+        
+        var stringReps = "\(reps) reps"
+        if reps == "" || stringReps == "1"{
+            stringReps = "1 rep"
+        }
+        
+        let setsString = "Set \(set): \(stringKg) x \(stringReps)"
+        return setsString
     }
     
 }

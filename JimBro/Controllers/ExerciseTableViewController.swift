@@ -65,7 +65,7 @@ class ExerciseTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if exerciseArray.isEmpty {
-            self.tableView.backgroundView = brain.getNoDataLabel()
+            self.tableView.backgroundView = brain.getNoDataLabel(text: "No exercises added yet")
         } else {
             self.tableView.backgroundView = nil
         }
