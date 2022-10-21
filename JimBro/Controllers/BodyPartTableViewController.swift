@@ -13,13 +13,13 @@ class BodyPartTableViewController: UITableViewController {
     @IBOutlet weak var titleLabel: UILabel!
     
     var muscles = [Muscle]()
+    var brain = JimBrain()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //tableView.separatorStyle = .none
-        //tableView.rowHeight = 50
+        
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
-
+        
         print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
         
         loadMuscles()
@@ -27,18 +27,14 @@ class BodyPartTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-            navigationController?.setNavigationBarHidden(true, animated: animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
         
     }
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-            navigationController?.setNavigationBarHidden(false, animated: animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(false)
-        //self.centerTitle()
-    }
     
     // MARK: - Table view data source
     
@@ -49,12 +45,12 @@ class BodyPartTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "BodyPartCell", for: indexPath)
+        let muscle = muscles[indexPath.row]
         
-        cell.textLabel?.text = muscles[indexPath.row].name
+        cell.textLabel?.text = muscle.name
         cell.textLabel?.font = .boldSystemFont(ofSize: 20)
         
         //Detail text label
-        let muscle = muscles[indexPath.row]
         var exerciseArray = [String]()
         for exercise in muscle.exercises! {
             exerciseArray.append((exercise as AnyObject).name)
@@ -89,21 +85,8 @@ class BodyPartTableViewController: UITableViewController {
         do {
             muscles = try K.CoreData.context.fetch(request)
             
-            if muscles == [] {
-                
-                let musclesArray = ["Back", "Chest", "Legs", "Arms", "Shoulders", "Abs", "More"]
-                
-                for muscle in musclesArray {
-                    let muscles = Muscle(context: K.CoreData.context)
-                    muscles.name = muscle
-                    
-                    do {
-                        try K.CoreData.context.save()
-                    } catch {
-                        print("Error saving context \(error)")
-                    }
-                }
-                
+            if muscles.isEmpty {
+                brain.putMusclesInCoreData()
                 muscles = try K.CoreData.context.fetch(request)
             }
             
@@ -117,15 +100,18 @@ class BodyPartTableViewController: UITableViewController {
     
 }
 
-//extension BodyPartTableViewController{
-//    func centerTitle(){
-//        for navItem in(self.navigationController?.navigationBar.subviews)! {
-//             for itemSubView in navItem.subviews {
-//                 if let largeLabel = itemSubView as? UILabel {
-//                    largeLabel.center = CGPoint(x: navItem.bounds.width/2, y: navItem.bounds.height/2)
-//                    return;
-//                 }
-//             }
-//        }
-//    }
-//}
+struct JimBrain {
+    func putMusclesInCoreData() {
+
+        for muscle in K.musclesArray {
+            let muscles = Muscle(context: K.CoreData.context)
+            muscles.name = muscle
+            
+            do {
+                try K.CoreData.context.save()
+            } catch {
+                print("Error saving context \(error)")
+            }
+        }
+    }
+}

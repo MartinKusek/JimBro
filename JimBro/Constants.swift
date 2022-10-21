@@ -10,6 +10,7 @@ import CoreData
 
 struct K {
     static let appName = "JimBro"
+    static let musclesArray = ["Back", "Chest", "Legs", "Arms", "Shoulders", "Abs", "More"]
     
     struct CoreData {
         static let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext

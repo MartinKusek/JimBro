@@ -21,11 +21,10 @@ class ExerciseTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
-
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
         title = selectedMuscle!.name
     }
     
@@ -58,7 +57,7 @@ class ExerciseTableViewController: UITableViewController {
     }
     
     @objc func dismissOnTapOutside(){
-       self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
     
     // MARK: - Table view data source
@@ -120,7 +119,7 @@ class ExerciseTableViewController: UITableViewController {
             for sets in exerciseForDeletion.sets! {
                 K.CoreData.context.delete(sets as! NSManagedObject)
             }
-                    
+            
             K.CoreData.context.delete(exerciseForDeletion)
             do {
                 try K.CoreData.context.save()
