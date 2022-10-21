@@ -12,7 +12,7 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     @IBOutlet weak var tableView: UITableView!
     
-    var brain = JimBrain()
+    var jimBrain = JimBrain()
     var setsArray = [Sets]()
     var selectedExercise: Exercise?
 
@@ -52,7 +52,7 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         let action = UIAlertAction(title: "Add", style: .default) { (action) in
             
             let newSet = Sets(context: K.CoreData.context)
-            newSet.set = self.brain.getSetsString(set: self.setsArray.count + 1, kg: KgTextField.text!, reps: RepsTextField.text!)
+            newSet.set = self.jimBrain.getSetsString(set: self.setsArray.count + 1, kg: KgTextField.text!, reps: RepsTextField.text!)
             newSet.parentExercise = self.selectedExercise
                         
             newSet.date = self.dateFormatter.string(from: self.date)
@@ -107,7 +107,7 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if setsArray.isEmpty {
-            self.tableView.backgroundView = brain.getNoDataLabel(text: "No sets added yet")
+            self.tableView.backgroundView = jimBrain.getNoDataLabel(text: "No sets added yet")
         } else {
             self.tableView.backgroundView = nil
         }

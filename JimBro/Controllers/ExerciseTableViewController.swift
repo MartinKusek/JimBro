@@ -10,7 +10,7 @@ import CoreData
 
 class ExerciseTableViewController: UITableViewController {
     
-    var brain = JimBrain()
+    var jimBrain = JimBrain()
     var exerciseArray = [Exercise]()
     
     var selectedMuscle: Muscle? {
@@ -65,7 +65,7 @@ class ExerciseTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if exerciseArray.isEmpty {
-            self.tableView.backgroundView = brain.getNoDataLabel(text: "No exercises added yet")
+            self.tableView.backgroundView = jimBrain.getNoDataLabel(text: "No exercises added yet")
         } else {
             self.tableView.backgroundView = nil
         }

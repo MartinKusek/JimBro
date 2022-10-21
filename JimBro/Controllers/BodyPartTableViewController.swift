@@ -12,7 +12,7 @@ class BodyPartTableViewController: UITableViewController {
     
     @IBOutlet weak var titleLabel: UILabel!
     
-    var brain = JimBrain()
+    var jimBrain = JimBrain()
     var muscles = [Muscle]()
     
     override func viewDidLoad() {
@@ -28,6 +28,7 @@ class BodyPartTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
+        tableView.reloadData()
         
     }
     override func viewWillDisappear(_ animated: Bool) {
@@ -50,12 +51,7 @@ class BodyPartTableViewController: UITableViewController {
         cell.textLabel?.text = muscle.name
         cell.textLabel?.font = .boldSystemFont(ofSize: 20)
         
-        //Detail text label
-        var exerciseArray = [String]()
-        for exercise in muscle.exercises! {
-            exerciseArray.append((exercise as AnyObject).name)
-        }
-        cell.detailTextLabel?.text = "\(exerciseArray.joined(separator: ", "))"
+        cell.detailTextLabel?.text = jimBrain.getExercisesDetailText(muscle: muscle)
         return cell
     }
     
@@ -86,7 +82,7 @@ class BodyPartTableViewController: UITableViewController {
             muscles = try K.CoreData.context.fetch(request)
             
             if muscles.isEmpty {
-                brain.getMusclesInCoreData()
+                jimBrain.getMusclesInCoreData()
                 muscles = try K.CoreData.context.fetch(request)
             }
             
@@ -97,60 +93,4 @@ class BodyPartTableViewController: UITableViewController {
         tableView.reloadData()
         
     }
-}
-
-struct JimBrain {
-    
-    func getMusclesInCoreData() {
-
-        for muscle in K.musclesArray {
-            let muscles = Muscle(context: K.CoreData.context)
-            muscles.name = muscle
-            
-            do {
-                try K.CoreData.context.save()
-            } catch {
-                print("Error saving context \(error)")
-            }
-        }
-    }
-    
-    func getNoDataLabel(text: String) -> UILabel {
-        
-        let noDataLabel: UILabel = UILabel()
-        noDataLabel.text = text
-        noDataLabel.textColor = UIColor.gray
-        noDataLabel.backgroundColor = UIColor.clear
-        noDataLabel.textAlignment = NSTextAlignment.center
-        return noDataLabel
-    }
-    
-    func getSetsString(set: Int, kg: String, reps: String) -> String {
-        
-        var stringKg = "\(kg) kg"
-        if kg == "" || kg == "0" || kg == "1" {
-            stringKg = "Bodyweight"
-        }
-        
-        var stringReps = "\(reps) reps"
-        if reps == "" || stringReps == "1"{
-            stringReps = "1 rep"
-        }
-        
-        let setsString = "Set \(set): \(stringKg) x \(stringReps)"
-        return setsString
-    }
-    
-    func getDatesFromSets(date: String, sets: [Sets]) -> [String] {
-        var dateArray = [String]()
-        for set in sets {
-            if set.date != date {
-                dateArray.append(set.date!)
-            }
-        }
-        
-        return dateArray
-    }
-    
-    
 }

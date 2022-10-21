@@ -10,7 +10,7 @@ import CoreData
 
 class PreviousSessionsTableViewController: UITableViewController {
     
-    var brain = JimBrain()
+    var jimBrain = JimBrain()
     var setsArray = [Sets]()
     var cleanDateArray = [String]()
     
@@ -24,7 +24,7 @@ class PreviousSessionsTableViewController: UITableViewController {
             dateFormatter.dateFormat = "d. M. y."
             let date = dateFormatter.string(from: date)
             
-            cleanDateArray = brain.getDatesFromSets(date: date, sets: setsArray).removingDuplicates()
+            cleanDateArray = jimBrain.getDatesFromSets(date: date, sets: setsArray).removingDuplicates()
         }
     }
     
@@ -37,7 +37,7 @@ class PreviousSessionsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if cleanDateArray.isEmpty {
-            self.tableView.backgroundView = brain.getNoDataLabel(text: "No previous sessions")
+            self.tableView.backgroundView = jimBrain.getNoDataLabel(text: "No previous sessions")
         } else {
             self.tableView.backgroundView = nil
         }
@@ -91,15 +91,5 @@ class PreviousSessionsTableViewController: UITableViewController {
         }
         
         self.tableView.reloadData()
-    }
-}
-
-extension Array where Element: Hashable {
-    func removingDuplicates() -> [Element] {
-        var addedDict = [Element: Bool]()
-        
-        return filter {
-            addedDict.updateValue(true, forKey: $0) == nil
-        }
     }
 }

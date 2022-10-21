@@ -17,6 +17,7 @@
 		C3DC16B828F96816008A6B3F /* ExerciseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DC16B728F96816008A6B3F /* ExerciseTableViewController.swift */; };
 		C3DC16C228F99B42008A6B3F /* SetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3DC16C128F99B42008A6B3F /* SetsViewController.swift */; };
 		C3DC16C528F9A5E3008A6B3F /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C3DC16C328F9A5E3008A6B3F /* DataModel.xcdatamodeld */; };
+		C3E4B3EC2902E85E000E1FFE /* JimBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E4B3EB2902E85E000E1FFE /* JimBrain.swift */; };
 		C3FBBA6928FC392700F469C9 /* PreviousSessionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FBBA6828FC392700F469C9 /* PreviousSessionsTableViewController.swift */; };
 		C3FBBA6B28FC398B00F469C9 /* SpecificSessionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FBBA6A28FC398B00F469C9 /* SpecificSessionTableViewController.swift */; };
 		C3FC365229003E320065C013 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3FC365129003E320065C013 /* Constants.swift */; };
@@ -35,6 +36,7 @@
 		C3DC16B728F96816008A6B3F /* ExerciseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseTableViewController.swift; sourceTree = "<group>"; };
 		C3DC16C128F99B42008A6B3F /* SetsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetsViewController.swift; sourceTree = "<group>"; };
 		C3DC16C428F9A5E3008A6B3F /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		C3E4B3EB2902E85E000E1FFE /* JimBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JimBrain.swift; sourceTree = "<group>"; };
 		C3FBBA6828FC392700F469C9 /* PreviousSessionsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviousSessionsTableViewController.swift; sourceTree = "<group>"; };
 		C3FBBA6A28FC398B00F469C9 /* SpecificSessionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecificSessionTableViewController.swift; sourceTree = "<group>"; };
 		C3FC365129003E320065C013 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				C3DC16C328F9A5E3008A6B3F /* DataModel.xcdatamodeld */,
+				C3E4B3EB2902E85E000E1FFE /* JimBrain.swift */,
 			);
 			path = "Data model";
 			sourceTree = "<group>";
@@ -193,6 +196,7 @@
 				C3DC16C228F99B42008A6B3F /* SetsViewController.swift in Sources */,
 				C3D3A3AE28F875FA00792F78 /* SceneDelegate.swift in Sources */,
 				C3FBBA6928FC392700F469C9 /* PreviousSessionsTableViewController.swift in Sources */,
+				C3E4B3EC2902E85E000E1FFE /* JimBrain.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
