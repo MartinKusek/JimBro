@@ -10,57 +10,45 @@ import CoreData
 
 class PreviousSessionsTableViewController: UITableViewController {
     
-    
+    var brain = JimBrain()
     var setsArray = [Sets]()
-    var dateArray = [String]()
     var cleanDateArray = [String]()
     
-    var todaysDate = Date()
-    let TodaysDateFormatter = DateFormatter()
+    var date = Date()
+    let dateFormatter = DateFormatter()
     
     var selectedExerciseInSessions: Exercise? {
         didSet {
             loadSets()
             
-            TodaysDateFormatter.dateFormat = "d. M. y."
-            let date = TodaysDateFormatter.string(from: todaysDate)
+            dateFormatter.dateFormat = "d. M. y."
+            let date = dateFormatter.string(from: date)
             
-            for sets in setsArray {
-                if sets.date != date {
-                    dateArray.append(sets.date!)
-                }
-            }
-            cleanDateArray = dateArray.removingDuplicates()
+            cleanDateArray = brain.getDatesFromSets(date: date, sets: setsArray).removingDuplicates()
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
                 self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
     }
     
     // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if dateArray.isEmpty {
-            
-            let noDataLabel: UILabel = UILabel()
-            noDataLabel.text = "No previous sessions"
-            noDataLabel.textColor = UIColor(red: 22.0/255.0, green: 106.0/255.0, blue: 176.0/255.0, alpha: 1.0)
-            noDataLabel.textAlignment = NSTextAlignment.center
-            self.tableView.backgroundView = noDataLabel
-            
+        if cleanDateArray.isEmpty {
+            self.tableView.backgroundView = brain.getNoDataLabel(text: "No previous sessions")
         } else {
             self.tableView.backgroundView = nil
         }
-        return dateArray.removingDuplicates().count
+        return cleanDateArray.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "sessionsCell", for: indexPath)
+        let setDate = cleanDateArray[indexPath.row]
         
-        cell.textLabel?.text = "\(String(describing: dateArray.removingDuplicates()[indexPath.row]))"
+        cell.textLabel?.text = "\(setDate)"
         
         return cell
     }
@@ -79,7 +67,7 @@ class PreviousSessionsTableViewController: UITableViewController {
         destinationVc.selectedExerciseInSpecificSessions = selectedExerciseInSessions
         
         if let indexPath = tableView.indexPathForSelectedRow {
-            destinationVc.selectedDate = dateArray.removingDuplicates()[indexPath.row]
+            destinationVc.selectedDate = cleanDateArray[indexPath.row]
         }
     }
     

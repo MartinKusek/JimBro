@@ -141,4 +141,16 @@ struct JimBrain {
         return setsString
     }
     
+    func getDatesFromSets(date: String, sets: [Sets]) -> [String] {
+        var dateArray = [String]()
+        for set in sets {
+            if set.date != date {
+                dateArray.append(set.date!)
+            }
+        }
+        
+        return dateArray
+    }
+    
+    
 }
