@@ -12,8 +12,8 @@ class BodyPartTableViewController: UITableViewController {
     
     @IBOutlet weak var titleLabel: UILabel!
     
-    var muscles = [Muscle]()
     var brain = JimBrain()
+    var muscles = [Muscle]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,7 +86,7 @@ class BodyPartTableViewController: UITableViewController {
             muscles = try K.CoreData.context.fetch(request)
             
             if muscles.isEmpty {
-                brain.putMusclesInCoreData()
+                brain.getMusclesInCoreData()
                 muscles = try K.CoreData.context.fetch(request)
             }
             
@@ -97,11 +97,11 @@ class BodyPartTableViewController: UITableViewController {
         tableView.reloadData()
         
     }
-    
 }
 
 struct JimBrain {
-    func putMusclesInCoreData() {
+    
+    func getMusclesInCoreData() {
 
         for muscle in K.musclesArray {
             let muscles = Muscle(context: K.CoreData.context)
@@ -114,4 +114,15 @@ struct JimBrain {
             }
         }
     }
+    
+    func getNoDataLabel() -> UILabel {
+        
+        let noDataLabel: UILabel = UILabel()
+        noDataLabel.text = "No exercises added yet..."
+        noDataLabel.textColor = UIColor.gray
+        noDataLabel.backgroundColor = UIColor.clear
+        noDataLabel.textAlignment = NSTextAlignment.center
+        return noDataLabel
+    }
+    
 }

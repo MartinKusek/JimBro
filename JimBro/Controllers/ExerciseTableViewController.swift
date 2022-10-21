@@ -10,6 +10,7 @@ import CoreData
 
 class ExerciseTableViewController: UITableViewController {
     
+    var brain = JimBrain()
     var exerciseArray = [Exercise]()
     
     var selectedMuscle: Muscle? {
@@ -64,14 +65,7 @@ class ExerciseTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if exerciseArray.isEmpty {
-            
-            let noDataLabel: UILabel = UILabel()
-            noDataLabel.text = "No exercises added yet..."
-            noDataLabel.textColor = UIColor.gray
-            noDataLabel.backgroundColor = UIColor.clear
-            noDataLabel.textAlignment = NSTextAlignment.center
-            self.tableView.backgroundView = noDataLabel
-            
+            self.tableView.backgroundView = brain.getNoDataLabel()
         } else {
             self.tableView.backgroundView = nil
         }
@@ -81,9 +75,9 @@ class ExerciseTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "ExerciseCell", for: indexPath)
-        let item = exerciseArray[indexPath.row]
+        let exercise = exerciseArray[indexPath.row]
         
-        cell.textLabel?.text = item.name
+        cell.textLabel?.text = exercise.name
         return cell
     }
     
