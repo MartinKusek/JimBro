@@ -41,7 +41,7 @@ struct JimBrain {
         }
         
         var stringReps = "\(reps) reps"
-        if reps == "" || stringReps == "1"{
+        if reps == "" || stringReps == "1" || reps == "0"{
             stringReps = "1 rep"
         }
         
