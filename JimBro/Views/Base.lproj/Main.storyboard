@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--WE GO JIM!!-->
+        <!--Body Part Table View Controller-->
         <scene sceneID="vhw-Vk-onp">
             <objects>
                 <tableViewController id="ns0-ld-cDI" customClass="BodyPartTableViewController" customModule="JimBro" customModuleProvider="target" sceneMemberID="viewController">
@@ -16,21 +16,43 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <label key="tableHeaderView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WE GO JIM!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TZo-xH-e1V">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="150"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="VGD-2E-i9x">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="128"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="cJy-yl-fEg">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="128"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WE GO JIM!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lYm-5w-Pxk">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="64"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="40"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                            <color key="shadowColor" red="0.95065671210000002" green="0.77719068530000002" blue="0.26671835780000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                            <size key="shadowOffset" width="2" height="2"/>
+                                        </label>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Teg1" translatesAutoresizingMaskIntoConstraints="NO" id="8AF-vD-DoG">
+                                            <rect key="frame" x="0.0" y="64" width="414" height="64"/>
+                                        </imageView>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="cJy-yl-fEg" secondAttribute="bottom" id="Jxi-hH-rRg"/>
+                                <constraint firstAttribute="trailing" secondItem="cJy-yl-fEg" secondAttribute="trailing" id="VyY-xy-b4d"/>
+                                <constraint firstItem="cJy-yl-fEg" firstAttribute="top" secondItem="VGD-2E-i9x" secondAttribute="top" id="gyc-e5-UPj"/>
+                                <constraint firstItem="cJy-yl-fEg" firstAttribute="leading" secondItem="VGD-2E-i9x" secondAttribute="leading" id="pM9-Ff-teY"/>
+                            </constraints>
+                        </view>
                         <connections>
                             <outlet property="dataSource" destination="ns0-ld-cDI" id="MKM-RG-OIb"/>
                             <outlet property="delegate" destination="ns0-ld-cDI" id="ivW-Wt-rPK"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="WE GO JIM!!" id="4YG-p5-gTr"/>
+                    <navigationItem key="navigationItem" id="4YG-p5-gTr">
+                        <nil key="title"/>
+                    </navigationItem>
                     <connections>
-                        <outlet property="titleLabel" destination="TZo-xH-e1V" id="3Jf-iF-2Ek"/>
                         <segue destination="SCJ-dD-D5c" kind="show" identifier="bodyToExercise" id="zR3-Tn-8H3"/>
                     </connections>
                 </tableViewController>
@@ -234,8 +256,14 @@
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.95065671210000002" green="0.77719068530000002" blue="0.26671835780000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                        <color key="tintColor" systemColor="labelColor"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="barTintColor" systemColor="labelColor"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="Pko-z1-Y46" kind="relationship" relationship="rootViewController" id="lDP-bI-gmV"/>
@@ -266,6 +294,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Teg1" width="1065" height="553"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
