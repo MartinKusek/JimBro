@@ -30,7 +30,9 @@ class PreviousSessionsTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
+        
+        tableView.separatorColor = UIColor(rgb: 0xFBC403)
+        navigationController?.navigationBar.barStyle = .blackTranslucent
     }
     
     // MARK: - Table view data source

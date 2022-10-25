@@ -21,8 +21,8 @@ class ExerciseTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
-        
+        tableView.separatorColor = UIColor(rgb: 0xFBC403)
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -35,6 +35,8 @@ class ExerciseTableViewController: UITableViewController {
         var textField = UITextField()
         
         let alert = UIAlertController(title: "Add New Exercise", message: "", preferredStyle: .alert)
+        
+        alert.view.tintColor = UIColor.black
         
         let action = UIAlertAction(title: "Add", style: .default) { (action) in
             

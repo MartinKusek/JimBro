@@ -18,8 +18,9 @@ class BodyPartTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
-        
+        self.tableView.register(UINib(nibName: "MuscleTableViewCell", bundle: nil), forCellReuseIdentifier: "MuscleCell")
+        tableView.separatorStyle = .none
+                
         print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
         
         loadMuscles()
@@ -39,19 +40,22 @@ class BodyPartTableViewController: UITableViewController {
     
     // MARK: - Table view data source
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 70
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return muscles.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: "BodyPartCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MuscleCell", for: indexPath) as! MuscleTableViewCell
         let muscle = muscles[indexPath.row]
         
-        cell.textLabel?.text = muscle.name
-        cell.textLabel?.font = .boldSystemFont(ofSize: 20)
-        
-        cell.detailTextLabel?.text = jimBrain.getExercisesDetailText(muscle: muscle)
+        cell.muscleLabel.text = muscle.name
+        cell.exerciseLabel.text = jimBrain.getExercisesDetailText(muscle: muscle)
+        cell.muscleImage.image = UIImage(named: muscle.name ?? "Back")
+
         return cell
     }
     

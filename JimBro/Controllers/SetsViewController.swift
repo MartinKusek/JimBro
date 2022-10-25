@@ -11,6 +11,7 @@ import CoreData
 class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate{
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var previousSessionsButton: UIButton!
     
     var jimBrain = JimBrain()
     var setsArray = [Sets]()
@@ -21,8 +22,10 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "background")!)
         tableView.separatorStyle = .none
+        
+        previousSessionsButton.layer.cornerRadius = 8
+        
 
         
         title = selectedExercise?.name
@@ -48,6 +51,7 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
         var RepsTextField = UITextField()
         
         let alert = UIAlertController(title: "Set \(self.setsArray.count + 1):", message: "", preferredStyle: .alert)
+        alert.view.tintColor = UIColor.black
         
         let action = UIAlertAction(title: "Add", style: .default) { (action) in
             
