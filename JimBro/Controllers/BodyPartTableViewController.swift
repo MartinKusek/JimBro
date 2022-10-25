@@ -54,7 +54,7 @@ class BodyPartTableViewController: UITableViewController {
         
         cell.muscleLabel.text = muscle.name
         cell.exerciseLabel.text = jimBrain.getExercisesDetailText(muscle: muscle)
-        cell.muscleImage.image = UIImage(named: muscle.name ?? "Back")
+        cell.muscleImage.image = UIImage(named: muscle.name ?? "More")
 
         return cell
     }

@@ -72,7 +72,7 @@
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Deadlift, Pull ups" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sAj-ui-rUB" userLabel="Exercises">
                                                                         <rect key="frame" x="0.0" y="30" width="130" height="30"/>
                                                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
-                                                                        <nil key="textColor"/>
+                                                                        <color key="textColor" red="0.44383028149999998" green="0.4441863298" blue="0.41682666540000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>

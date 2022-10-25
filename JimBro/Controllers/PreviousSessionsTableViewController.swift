@@ -32,7 +32,6 @@ class PreviousSessionsTableViewController: UITableViewController {
         super.viewDidLoad()
         
         tableView.separatorColor = UIColor(rgb: 0xFBC403)
-        navigationController?.navigationBar.barStyle = .blackTranslucent
     }
     
     // MARK: - Table view data source

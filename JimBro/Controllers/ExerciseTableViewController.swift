@@ -22,7 +22,7 @@ class ExerciseTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.separatorColor = UIColor(rgb: 0xFBC403)
-
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,14 +39,15 @@ class ExerciseTableViewController: UITableViewController {
         alert.view.tintColor = UIColor.black
         
         let action = UIAlertAction(title: "Add", style: .default) { (action) in
-            
-            let newExercise = Exercise(context: K.CoreData.context)
-            newExercise.name = textField.text!
-            newExercise.parentMuscle = self.selectedMuscle
-            
-            self.exerciseArray.append(newExercise)
-            
-            self.saveExercises()
+            if textField.text?.isEmpty == false {
+                let newExercise = Exercise(context: K.CoreData.context)
+                newExercise.name = textField.text!
+                newExercise.parentMuscle = self.selectedMuscle
+                
+                self.exerciseArray.append(newExercise)
+                
+                self.saveExercises()
+            }
         }
         alert.addTextField { (alertTextField) in
             alertTextField.placeholder = "Exercise name"

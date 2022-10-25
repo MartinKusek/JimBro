@@ -111,7 +111,7 @@ class SetsViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if setsArray.isEmpty {
-            self.tableView.backgroundView = jimBrain.getNoDataLabel(text: "No sets added yet")
+            self.tableView.backgroundView = jimBrain.getNoDataLabel(text: "No sets added today")
         } else {
             self.tableView.backgroundView = nil
         }
