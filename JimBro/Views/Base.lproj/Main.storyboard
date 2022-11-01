@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Body Part Table View Controller-->
+        <!--WE GO JIM!-->
         <scene sceneID="vhw-Vk-onp">
             <objects>
                 <tableViewController id="ns0-ld-cDI" customClass="BodyPartTableViewController" customModule="JimBro" customModuleProvider="target" sceneMemberID="viewController">
@@ -49,9 +49,7 @@
                             <outlet property="delegate" destination="ns0-ld-cDI" id="ivW-Wt-rPK"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="4YG-p5-gTr">
-                        <nil key="title"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="WE GO JIM!" id="4YG-p5-gTr"/>
                     <connections>
                         <segue destination="SCJ-dD-D5c" kind="show" identifier="bodyToExercise" id="zR3-Tn-8H3"/>
                     </connections>
