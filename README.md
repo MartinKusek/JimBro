@@ -10,21 +10,26 @@ The main idea behind this app is progressive overload (when you gradually increa
 
 ## Screenshots
 
+Welcome screen  
+
 ![App Screenshot](https://github.com/MartinKusek/JimBro/blob/master/Screenshots/Screenshot%202022-11-01%20at%2014.54.52.png)
 
-Welcome screen 
-
-![App Screenshot](https://github.com/MartinKusek/JimBro/blob/master/Screenshots/exercise.gif)
 
 You can quickly add new exercises
 
-![App Screenshot](https://github.com/MartinKusek/JimBro/blob/master/Screenshots/sessions.gif)
+![App Screenshot](https://github.com/MartinKusek/JimBro/blob/master/Screenshots/exercise.gif)
+
 
 Browse through previous sessions
 
-![App Screenshot](https://github.com/MartinKusek/JimBro/blob/master/Screenshots/sets.gif)
+![App Screenshot](https://github.com/MartinKusek/JimBro/blob/master/Screenshots/sessions.gif)
+
 
 Add new sets (weight and number of repetitons)
+
+![App Screenshot](https://github.com/MartinKusek/JimBro/blob/master/Screenshots/sets.gif)
+
+
 
 
 
