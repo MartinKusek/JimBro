@@ -14,15 +14,15 @@ The main idea behind this app is progressive overload (when you gradually increa
 
 Welcome screen 
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![App Screenshot](https://github.com/MartinKusek/JimBro/blob/master/Screenshots/exercise.gif)
 
 You can quickly add new exercises
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![App Screenshot](https://github.com/MartinKusek/JimBro/blob/master/Screenshots/sessions.gif)
 
 Browse through previous sessions
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![App Screenshot](https://github.com/MartinKusek/JimBro/blob/master/Screenshots/sets.gif)
 
 Add new sets (weight and number of repetitons)
 
