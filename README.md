@@ -10,7 +10,7 @@ The main idea behind this app is progressive overload (when you gradually increa
 
 ## Screenshots
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![App Screenshot](https://github.com/MartinKusek/JimBro/blob/master/Screenshots/Screenshot%202022-11-01%20at%2014.54.52.png)
 
 Welcome screen 
 
